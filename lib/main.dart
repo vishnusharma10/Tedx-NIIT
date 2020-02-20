@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:tedx_niit/constants/Constants.dart';
 import 'package:tedx_niit/screens/History.dart';
+import 'package:tedx_niit/screens/Speakers.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -32,6 +33,7 @@ class _HomeState extends State<Home> {
     _pageController.dispose();
     super.dispose();
   }
+  int dropDownValue = 2018;
 
   @override
   Widget build(BuildContext context) {
@@ -51,11 +53,9 @@ class _HomeState extends State<Home> {
                     }
                 ));
               },
-              child: Icon(
-                Icons.history,
-                size: 26.0,
-                color: Colors.black,
-              ),
+              child: DropdownButton(icon: Icon(Icons.history,color: Colors.black,),items: null, onChanged: (int newValue){setState(() {
+                dropDownValue = newValue;
+              });})
             )
         )],
        ),
@@ -67,20 +67,13 @@ class _HomeState extends State<Home> {
           },
           children: <Widget>[
             Container(
-              color: Colors.blueGrey,
+              color: Colors.black,
             ),
-            Container(
-              color: Colors.red,
-            ),
-            Container(
-              color: Colors.green,
-            ),
-            Container(
-              color: Colors.blue,
-            ),
+            Speakers(),
             Container(
               color: Colors.black,
             ),
+
           ],
         ),
       ),
@@ -92,10 +85,8 @@ class _HomeState extends State<Home> {
           _pageController.jumpToPage(index);
         },
         items: <BottomNavyBarItem>[
-          BottomNavyBarItem(title: Text('Speakers'), icon: Icon(Icons.headset_mic),activeColor: active_color,inactiveColor: inactive_color),
           BottomNavyBarItem(title: Text('Schedule'), icon: Icon(Icons.access_time),activeColor: active_color,inactiveColor: inactive_color),
-          BottomNavyBarItem(
-              title: Text('Events'), icon: Icon(Icons.calendar_today),activeColor: active_color,inactiveColor:inactive_color),
+          BottomNavyBarItem(title: Text('Speakers'), icon: Icon(Icons.headset_mic),activeColor: active_color,inactiveColor: inactive_color),
           BottomNavyBarItem(
               title: Text('About Us'), icon: Icon(Icons.person),activeColor: active_color,inactiveColor: inactive_color),
 

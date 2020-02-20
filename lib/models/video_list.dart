@@ -17,7 +17,20 @@ final List<String> _urls19 = [
   'https://youtu.be/VaegXWjUhN0?list=PLsRNoUx8w3rO01rum8RfjQn5LVl5Vq7Ka',
 ];
 
-final List<String> _url_ids = _urls19.map((url){return YoutubePlayer.convertUrlToId(url);}).toList();
+final List<String> _urls18 = [
+  'https://youtu.be/zxusiA7UsHI?list=PLsRNoUx8w3rNdvD1tNTtHmyWfqTofEDB4',
+  'https://youtu.be/RsqOdZepzVs?list=PLsRNoUx8w3rNdvD1tNTtHmyWfqTofEDB4',
+  'https://youtu.be/fAYaSIMsxQs?list=PLsRNoUx8w3rNdvD1tNTtHmyWfqTofEDB4',
+  'https://youtu.be/BjRjuQnmJLY?list=PLsRNoUx8w3rNdvD1tNTtHmyWfqTofEDB4',
+  'https://youtu.be/tZoxCmda56I?list=PLsRNoUx8w3rNdvD1tNTtHmyWfqTofEDB4',
+  'https://youtu.be/nZkhF12fO8c?list=PLsRNoUx8w3rNdvD1tNTtHmyWfqTofEDB4',
+  'https://youtu.be/yc8-XT-awzY?list=PLsRNoUx8w3rNdvD1tNTtHmyWfqTofEDB4',
+  'https://youtu.be/XmE4mk8x00s?list=PLsRNoUx8w3rNdvD1tNTtHmyWfqTofEDB4',
+  'https://youtu.be/531nxrBke88?list=PLsRNoUx8w3rNdvD1tNTtHmyWfqTofEDB4',
+];
+final List<String> _url_ids19 = _urls19.map((url){return YoutubePlayer.convertUrlToId(url);}).toList();
+
+final List<String> _url_ids18 = _urls18.map((url){return YoutubePlayer.convertUrlToId(url);}).toList();
 
 class VideoList extends StatefulWidget {
   @override
@@ -25,7 +38,7 @@ class VideoList extends StatefulWidget {
 }
 
 class _VideoListState extends State<VideoList> {
-  final List<YoutubePlayerController> _controllers = _url_ids.map<YoutubePlayerController>(
+  final List<YoutubePlayerController> _controllers = _url_ids19.map<YoutubePlayerController>(
         (videoId) => YoutubePlayerController(
       initialVideoId: videoId,
       flags: YoutubePlayerFlags(
