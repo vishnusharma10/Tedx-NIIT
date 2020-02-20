@@ -5,8 +5,7 @@ import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 /// Homepage
 
-
-final  List<String> _urls19 = [
+final List<String> _urls19 = [
   'https://youtu.be/ZljJEjJ7n_g?list=PLsRNoUx8w3rO01rum8RfjQn5LVl5Vq7Ka',
   'https://youtu.be/PjrM3G8PCb8?list=PLsRNoUx8w3rO01rum8RfjQn5LVl5Vq7Ka',
   'https://youtu.be/ysYik6Ptfy4?list=PLsRNoUx8w3rO01rum8RfjQn5LVl5Vq7Ka',
@@ -17,7 +16,9 @@ final  List<String> _urls19 = [
   'https://youtu.be/VaegXWjUhN0?list=PLsRNoUx8w3rO01rum8RfjQn5LVl5Vq7Ka',
 ];
 
-final List<String> _url_ids = _urls19.map((url){return YoutubePlayer.convertUrlToId(url);}).toList();
+final List<String> _url_ids = _urls19.map((url) {
+  return YoutubePlayer.convertUrlToId(url);
+}).toList();
 
 class HistoryContainer extends StatefulWidget {
   @override
@@ -36,14 +37,14 @@ class _HistoryContainerState extends State<HistoryContainer> {
   bool _muted = false;
   bool _isPlayerReady = false;
 
-
   int count = 0;
 
   @override
   void initState() {
     super.initState();
     _controller = YoutubePlayerController(
-      initialVideoId: YoutubePlayer.convertUrlToId('https://youtu.be/ysYik6Ptfy4?list=PLsRNoUx8w3rO01rum8RfjQn5LVl5Vq7Ka'),
+      initialVideoId: YoutubePlayer.convertUrlToId(
+          'https://youtu.be/ysYik6Ptfy4?list=PLsRNoUx8w3rO01rum8RfjQn5LVl5Vq7Ka'),
       flags: YoutubePlayerFlags(
         mute: false,
         autoPlay: true,
@@ -116,7 +117,7 @@ class _HistoryContainerState extends State<HistoryContainer> {
           YoutubePlayer(
             controller: _controller,
             showVideoProgressIndicator: true,
-            progressIndicatorColor: Colors.blueAccent,
+            progressIndicatorColor: Colors.red,
             topActions: <Widget>[
               SizedBox(width: 8.0),
               Expanded(
@@ -124,7 +125,7 @@ class _HistoryContainerState extends State<HistoryContainer> {
                   _controller.metadata.title,
                   style: TextStyle(
                     color: Colors.white,
-                    fontSize: 18.0,
+                    fontSize: 25.0,
                   ),
                   overflow: TextOverflow.ellipsis,
                   maxLines: 1,
@@ -155,7 +156,10 @@ class _HistoryContainerState extends State<HistoryContainer> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 _space,
-                _text('Title', _videoMetaData.title),
+                _text(
+                  'Title',
+                  _videoMetaData.title,
+                ),
                 _space,
                 _text('Channel', _videoMetaData.author),
                 _space,
@@ -175,7 +179,7 @@ class _HistoryContainerState extends State<HistoryContainer> {
                   ],
                 ),
                 _space,
-                TextField(
+                /*TextField(
                   enabled: _isPlayerReady,
                   controller: _idController,
                   decoration: InputDecoration(
@@ -192,7 +196,7 @@ class _HistoryContainerState extends State<HistoryContainer> {
                       onPressed: () => _idController.clear(),
                     ),
                   ),
-                ),
+                ),*/
                 _space,
                 Row(
                   children: [
@@ -213,24 +217,24 @@ class _HistoryContainerState extends State<HistoryContainer> {
                       ),
                       onPressed: _isPlayerReady
                           ? () {
-                        _controller.value.isPlaying
-                            ? _controller.pause()
-                            : _controller.play();
-                        setState(() {});
-                      }
+                              _controller.value.isPlaying
+                                  ? _controller.pause()
+                                  : _controller.play();
+                              setState(() {});
+                            }
                           : null,
                     ),
                     IconButton(
                       icon: Icon(_muted ? Icons.volume_off : Icons.volume_up),
                       onPressed: _isPlayerReady
                           ? () {
-                        _muted
-                            ? _controller.unMute()
-                            : _controller.mute();
-                        setState(() {
-                          _muted = !_muted;
-                        });
-                      }
+                              _muted
+                                  ? _controller.unMute()
+                                  : _controller.mute();
+                              setState(() {
+                                _muted = !_muted;
+                              });
+                            }
                           : null,
                     ),
                     FullScreenButton(
@@ -256,11 +260,11 @@ class _HistoryContainerState extends State<HistoryContainer> {
                         label: '${(_volume).round()}',
                         onChanged: _isPlayerReady
                             ? (value) {
-                          setState(() {
-                            _volume = value;
-                          });
-                          _controller.setVolume(_volume.round());
-                        }
+                                setState(() {
+                                  _volume = value;
+                                });
+                                _controller.setVolume(_volume.round());
+                              }
                             : null,
                       ),
                     ),
@@ -296,14 +300,14 @@ class _HistoryContainerState extends State<HistoryContainer> {
       text: TextSpan(
         text: '$title : ',
         style: TextStyle(
-          color: Colors.blueAccent,
+          color: Colors.red,
           fontWeight: FontWeight.bold,
         ),
         children: [
           TextSpan(
             text: value ?? '',
             style: TextStyle(
-              color: Colors.blueAccent,
+              color: Colors.black,
               fontWeight: FontWeight.w300,
             ),
           ),
@@ -338,20 +342,20 @@ class _HistoryContainerState extends State<HistoryContainer> {
   Widget _loadCueButton(String action) {
     return Expanded(
       child: MaterialButton(
-        color: Colors.blueAccent,
+        color: Colors.red,
         onPressed: _isPlayerReady
             ? () {
-          if (_idController.text.isNotEmpty) {
-            var id = YoutubePlayer.convertUrlToId(
-              _idController.text,
-            );
-            if (action == 'LOAD') _controller.load(id);
-            if (action == 'CUE') _controller.cue(id);
-            FocusScope.of(context).requestFocus(FocusNode());
-          } else {
-            _showSnackBar('Source can\'t be empty!');
-          }
-        }
+                if (_idController.text.isNotEmpty) {
+                  var id = YoutubePlayer.convertUrlToId(
+                    _idController.text,
+                  );
+                  if (action == 'LOAD') _controller.load(id);
+                  if (action == 'CUE') _controller.cue(id);
+                  FocusScope.of(context).requestFocus(FocusNode());
+                } else {
+                  _showSnackBar('Source can\'t be empty!');
+                }
+              }
             : null,
         disabledColor: Colors.grey,
         disabledTextColor: Colors.black,
@@ -382,7 +386,7 @@ class _HistoryContainerState extends State<HistoryContainer> {
             fontSize: 16.0,
           ),
         ),
-        backgroundColor: Colors.blueAccent,
+        backgroundColor: Colors.redAccent,
         behavior: SnackBarBehavior.floating,
         elevation: 1.0,
         shape: RoundedRectangleBorder(
