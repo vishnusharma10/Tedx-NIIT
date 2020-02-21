@@ -10,20 +10,65 @@ class _SpeakersState extends State<Speakers> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        child: ListView(
+        color: Colors.black,
+        child: GridView.count(
+          padding: const EdgeInsets.all(10),
+          crossAxisSpacing: 10,
+          mainAxisSpacing: 10,
           children: <Widget>[
 
-            Image(
-              image: AssetImage("images/aditya_bhandari.png"),
+            GestureDetector(
+              child: Image(
+                image: AssetImage("images/aditya_bhandari.png",),
+
+              ),
+              onLongPress: (){
+
+              },
             ),
-            Image(image: AssetImage("images/Dhruv_Shah.png")),
-            Image(image: AssetImage("images/dig_Shalin.png")),
-            Image(image: AssetImage("images/manoj_final.png")),
-            Image(image: AssetImage("images/sushruti_krishna.png")),
-            Image(image: AssetImage("images/tirthak_saha.png")),
-            Image(image: AssetImage("images/vijay_rao.png")),
-            Image(image: AssetImage("images/Zoe_Modgill.png"))
-          ],
+            GestureDetector(
+              child: Image(
+                image: AssetImage("images/Dhruv_Shah.png",),
+
+              ),
+            ),
+            GestureDetector(
+              child: Image(
+                image: AssetImage("images/dig_Shalin.png",),
+
+              ),
+            ),
+            GestureDetector(
+              child: Image(
+                image: AssetImage("images/manoj_final.png",),
+
+              ),
+            ),
+            GestureDetector(
+              child: Image(
+                image: AssetImage("images/sushruti_krishna.png",),
+
+              ),
+            ),
+            GestureDetector(
+              child: Image(
+                image: AssetImage("images/tirthak_saha.png",),
+
+              ),
+            ),
+            GestureDetector(
+              child: Image(
+                image: AssetImage("images/vijay_rao.png",),
+
+              ),
+            ),
+            GestureDetector(
+              child: Image(
+                image: AssetImage("images/Zoe_Modgill.png",),
+
+              ),
+            ),
+          ], crossAxisCount: 2,
         ),
       ),
     );

@@ -1,6 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:tedx_niit/constants/Constants.dart';
+import 'package:tedx_niit/screens/AboutUs.dart';
 import 'package:tedx_niit/screens/History.dart';
 import 'package:tedx_niit/screens/Speakers.dart';
 
@@ -10,8 +12,6 @@ void main() {
     debugShowCheckedModeBanner: false,
   ));
 }
-
-
 
 class Home extends StatefulWidget {
   @override
@@ -33,32 +33,47 @@ class _HomeState extends State<Home> {
     _pageController.dispose();
     super.dispose();
   }
+
   int dropDownValue = 2018;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("TedX Niit University",style: style),
+        title: Container(
+            height: 50,
+            width: MediaQuery.of(context).size.width/2,
+            child: Image(
+          image: AssetImage('images/TEDxNIITUniversity3.png'),
+          fit: BoxFit.scaleDown,
+        )),
         centerTitle: true,
         backgroundColor: Colors.white,
         elevation: 10,
-        actions: <Widget>[Padding(
-            padding: EdgeInsets.only(right: 20.0),
-            child: GestureDetector(
-              onTap: () {
-                Navigator.push(context, MaterialPageRoute(
-                    builder: (context){
+        actions: <Widget>[
+          Padding(
+              padding: EdgeInsets.only(right: 20.0),
+              child: GestureDetector(
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
                       return History();
-                    }
-                ));
-              },
-              child: DropdownButton(icon: Icon(Icons.history,color: Colors.black,),items: null, onChanged: (int newValue){setState(() {
-                dropDownValue = newValue;
-              });})
-            )
-        )],
-       ),
+                    }));
+                  },
+                  child: DropdownButton(
+                      icon: Icon(
+                        Icons.history,
+                        color: Colors.black,
+                        size: 40,
+                      ),
+                      items: null,
+                      onChanged: (int newValue) {
+                        setState(() {
+                          dropDownValue = newValue;
+                        });
+                      })))
+        ],
+      ),
       body: SizedBox.expand(
         child: PageView(
           controller: _pageController,
@@ -70,10 +85,7 @@ class _HomeState extends State<Home> {
               color: Colors.black,
             ),
             Speakers(),
-            Container(
-              color: Colors.black,
-            ),
-
+            AboutUs(),
           ],
         ),
       ),
@@ -85,11 +97,21 @@ class _HomeState extends State<Home> {
           _pageController.jumpToPage(index);
         },
         items: <BottomNavyBarItem>[
-          BottomNavyBarItem(title: Text('Schedule'), icon: Icon(Icons.access_time),activeColor: active_color,inactiveColor: inactive_color),
-          BottomNavyBarItem(title: Text('Speakers'), icon: Icon(Icons.headset_mic),activeColor: active_color,inactiveColor: inactive_color),
           BottomNavyBarItem(
-              title: Text('About Us'), icon: Icon(Icons.person),activeColor: active_color,inactiveColor: inactive_color),
-
+              title: Text('Schedule'),
+              icon: Icon(Icons.access_time),
+              activeColor: active_color,
+              inactiveColor: inactive_color),
+          BottomNavyBarItem(
+              title: Text('Speakers'),
+              icon: Icon(Icons.headset_mic),
+              activeColor: active_color,
+              inactiveColor: inactive_color),
+          BottomNavyBarItem(
+              title: Text('About Us'),
+              icon: Icon(Icons.person),
+              activeColor: active_color,
+              inactiveColor: inactive_color),
         ],
       ),
     );
