@@ -5,4 +5,4 @@ Tedx-NIITUniversity is group of enthusiasts who praises Tedx initiative and want
 # screenshots
 | col 1      | col 2      |
 |------------|-------------|
-| <img src="https://media.wired.com/photos/5926db217034dc5f91becd6b/master/w_582,c_limit/so-logo-s.jpg" width="250"> | <img src="https://mk0jobadderjftub56m0.kinstacdn.com/wp-content/uploads/stackoverflow.com-300.jpg" width="250"> |
+| <img src="images/Screenshot_2020-02-24-10-06-55-689_com.tedxniituniversity.tedx_niit.jpg" width="250"> | <img src="images/Screenshot_2020-02-24-10-06-58-475_com.tedxniituniversity.tedx_niit.jpg" width="250"> | <img src = "images/Screenshot_2020-02-24-10-07-10-994_com.tedxniituniversity.tedx_niit.jpg" width="250"> | <img src = "images/Screenshot_2020-02-24-10-07-15-407_com.tedxniituniversity.tedx_niit.jpg"> width="250"> |
