@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import 'package:tedx_niit/models/Member.dart';
 
 class Team extends StatefulWidget {
   @override
@@ -11,36 +12,22 @@ class _TeamState extends State<Team> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.all(Radius.circular(20))
+      ),
       height: MediaQuery.of(context).size.height/2,
       child: ListWheelScrollView(
         useMagnifier: true,
-        magnification: 1.5,
+        magnification: 1,
         itemExtent: 80,
         children: [
-          Container(
-            width: double.infinity,
-            color: Colors.red,
-            child:Text("Hello"),
-            height: MediaQuery.of(context).size.height / 8,
-          ),
-          Container(
-            width: double.infinity,
-            color: Colors.red,
-            child:Text("Hello"),
-            height: MediaQuery.of(context).size.height / 8,
-          ),
-          Container(
-            width: double.infinity,
-            color: Colors.red,
-            child:Text("Hello"),
-            height: MediaQuery.of(context).size.height / 8,
-          ),
-          Container(
-            width: double.infinity,
-            color: Colors.red,
-            child:Text("Hello"),
-            height: MediaQuery.of(context).size.height / 8,
-          ),
+          Member(name: "Keerthana Reddy",role: "Organizer",),
+          Member(name: "Astha Kumar",role: "Lead Curator",),
+          Member(name: "Aditya Joshi",role: "Creative Lead",),
+          Member(name: "Abhilash Bhowmik",role: "Lead Designer",),
+          Member(name: "Arjun Bakshi",role: "Operations Lead",),
+          Member(name: "Yuvraj Singh",role: "Lead Cinematographer",),
+          Member(name: "Somanshu Singh",role: "Lead Web Developer",),
         ],
       ),
     );

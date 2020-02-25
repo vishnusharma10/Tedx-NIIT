@@ -92,7 +92,6 @@ class _AboutUsState extends State<AboutUs> {
               height: height / 2,
               width: double.infinity,
               decoration: BoxDecoration(
-                color: Colors.black,
                   /*gradient: LinearGradient(
                       colors: [Colors.white,Colors.black, Colors.black, Colors.white]),
                   */borderRadius: BorderRadius.all(Radius.circular(20))),
@@ -142,24 +141,17 @@ class _AboutUsState extends State<AboutUs> {
                       ),
                     ),
                     onTap: () {
-                      showModalBottomSheet(context: context, builder: (context){return Team();});
+                      showModalBottomSheet(context: context, builder: (context){return Team();},isScrollControlled: true,);
                     },
                   ),
-                  GestureDetector(
-                    child: Container(
-                      width: double.infinity,
-                      color: Colors.white,
-                      child: Center(
-                        child: Text(
-                          "Follow Us",
-                          style: TextStyle(
-                            fontSize: 40,
-                            color: Colors.black,
-                          ),
-                        ),
+                  Center(
+                    child: Text(
+                      "Follow Us",
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.black,
                       ),
                     ),
-                    onTap: () {},
                   ),
 
                   Row(
