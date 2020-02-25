@@ -4,6 +4,7 @@ import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:tedx_niit/constants/Constants.dart';
 import 'package:tedx_niit/screens/AboutUs.dart';
 import 'package:tedx_niit/screens/History.dart';
+import 'package:tedx_niit/screens/Schedule.dart';
 import 'package:tedx_niit/screens/Speakers.dart';
 
 void main() {
@@ -81,9 +82,7 @@ class _HomeState extends State<Home> {
             setState(() => _currentIndex = index);
           },
           children: <Widget>[
-            Container(
-              color: Colors.black,
-            ),
+            Schedule(),
             Speakers(),
             AboutUs(),
           ],

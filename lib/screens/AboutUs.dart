@@ -2,6 +2,7 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:solid_bottom_sheet/solid_bottom_sheet.dart';
 import 'package:tedx_niit/constants/strings.dart';
+import 'package:tedx_niit/models/Team.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class AboutUs extends StatefulWidget {
@@ -140,7 +141,9 @@ class _AboutUsState extends State<AboutUs> {
                         ),
                       ),
                     ),
-                    onTap: () {},
+                    onTap: () {
+                      showModalBottomSheet(context: context, builder: (context){return Team();});
+                    },
                   ),
                   GestureDetector(
                     child: Container(
