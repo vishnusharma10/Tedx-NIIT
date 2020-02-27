@@ -15,10 +15,8 @@ class _TeamState extends State<Team> {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(20))
       ),
-      height: MediaQuery.of(context).size.height/2,
+      height: MediaQuery.of(context).size.height/3,
       child: ListWheelScrollView(
-        useMagnifier: true,
-        magnification: 1,
         itemExtent: 80,
         children: [
           Member(name: "Keerthana Reddy",role: "Organizer",),

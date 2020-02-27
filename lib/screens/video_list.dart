@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:tedx_niit/screens/HistoryContainer.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import 'package:tedx_niit/constants/Constants.dart';
 /// Creates list of video players
@@ -33,22 +34,40 @@ final List<String> _url_ids19 = _urls19.map((url){return YoutubePlayer.convertUr
 final List<String> _url_ids18 = _urls18.map((url){return YoutubePlayer.convertUrlToId(url);}).toList();
 
 class VideoList extends StatefulWidget {
+
+  final int year;
+  VideoList({this.year});
   @override
   _VideoListState createState() => _VideoListState();
 }
 
 class _VideoListState extends State<VideoList> {
-  final List<YoutubePlayerController> _controllers = _url_ids19.map<YoutubePlayerController>(
-        (videoId) => YoutubePlayerController(
-      initialVideoId: videoId,
-      flags: YoutubePlayerFlags(
-        autoPlay: false,
-      ),
-    ),
-  )
-      .toList();
+  List<YoutubePlayerController> _controllers;
 
-/*
+  @override
+  void initState() {
+    super.initState();
+    _controllers = (widget.year == 2019 ? _url_ids19.map<YoutubePlayerController>(
+          (videoId) => YoutubePlayerController(
+        initialVideoId: videoId,
+        flags: YoutubePlayerFlags(
+          autoPlay: false,
+        ),
+      ),
+    )
+        .toList() : _url_ids18.map<YoutubePlayerController>(
+          (videoId) => YoutubePlayerController(
+        initialVideoId: videoId,
+        flags: YoutubePlayerFlags(
+          autoPlay: false,
+        ),
+      ),
+    )
+        .toList());
+
+  }
+
+  /*
   final  List<String> _urls19 = [
     'https://youtu.be/ZljJEjJ7n_g?list=PLsRNoUx8w3rO01rum8RfjQn5LVl5Vq7Ka',
     'https://youtu.be/PjrM3G8PCb8?list=PLsRNoUx8w3rO01rum8RfjQn5LVl5Vq7Ka',
@@ -67,22 +86,31 @@ class _VideoListState extends State<VideoList> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Video List Demo'),
+        title: Text('${widget.year}',style: TextStyle(color: Colors.black) ,),
+        backgroundColor: Colors.white,
+
       ),
       body: ListView.separated(
         itemBuilder: (context, index) {
-          return YoutubePlayer(
-            key: ObjectKey(_controllers[index]),
-            controller: _controllers[index],
-            actionsPadding: EdgeInsets.only(left: 16.0),
-            bottomActions: [
-              CurrentPosition(),
-              SizedBox(width: 10.0),
-              ProgressBar(isExpanded: true),
-              SizedBox(width: 10.0),
-              RemainingDuration(),
-              FullScreenButton(),
-            ],
+          return GestureDetector(
+            child: YoutubePlayer(
+              key: ObjectKey(_controllers[index]),
+              controller: _controllers[index],
+              actionsPadding: EdgeInsets.only(left: 16.0),
+              bottomActions: [
+                CurrentPosition(),
+                SizedBox(width: 10.0),
+                ProgressBar(isExpanded: true),
+                SizedBox(width: 10.0),
+                RemainingDuration(),
+                FullScreenButton(),
+              ],
+            ),
+            onDoubleTap: (){
+              Navigator.push(context, MaterialPageRoute(builder:(context){
+                return HistoryContainer(videoId: widget.year == 2019 ? _url_ids19[index]:_url_ids18[index]);
+              }));
+            },
           );
         },
         itemCount: _controllers.length,

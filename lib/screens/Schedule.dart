@@ -5,6 +5,7 @@ class Schedule extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
+        padding: EdgeInsets.all(10),
         child:ListView(
           children: <Widget>[
             Image(image: AssetImage("images/TED_1.png"

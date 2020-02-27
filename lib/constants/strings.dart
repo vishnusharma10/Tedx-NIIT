@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class Descriptions{
 
   Map<String, String> descriptions  = {
-    "Sugata_Mishra" : "Sugata Mitra is a professor of Educational "
+    "Sugata_Mitra" : "Sugata Mitra is a professor of Educational "
   "Technology at the School of Education, "
   "Communication and Language Sciences at "
   "Newcastle University. He is best known for "
@@ -103,7 +103,6 @@ class Descriptions{
   "his poetry will either make his poetry will either make you laugh "
   "or make you cry, but it will definitely "
   "not leave you with no reaction at all. ",
-
 
 
   };

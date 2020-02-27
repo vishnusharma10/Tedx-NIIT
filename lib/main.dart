@@ -6,6 +6,7 @@ import 'package:tedx_niit/screens/AboutUs.dart';
 import 'package:tedx_niit/screens/History.dart';
 import 'package:tedx_niit/screens/Schedule.dart';
 import 'package:tedx_niit/screens/Speakers.dart';
+import 'package:tedx_niit/screens/video_list.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -54,25 +55,30 @@ class _HomeState extends State<Home> {
         actions: <Widget>[
           Padding(
               padding: EdgeInsets.only(right: 20.0),
-              child: GestureDetector(
-                  onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) {
-                      return History();
-                    }));
-                  },
-                  child: DropdownButton(
-                      icon: Icon(
-                        Icons.history,
-                        color: Colors.black,
-                        size: 40,
-                      ),
-                      items: null,
-                      onChanged: (int newValue) {
-                        setState(() {
-                          dropDownValue = newValue;
-                        });
-                      })))
+              child: DropdownButton(
+                  icon: Icon(
+                    Icons.history,
+                    color: Colors.black,
+                    size: 40,
+                  ),
+                  items: <int>[2018,2019]
+                      .map<DropdownMenuItem<int>>((int value) {
+                    return DropdownMenuItem<int>(
+                        value: value,
+                        child: GestureDetector(child: Text(value.toString()),onTap: (){
+                          Navigator.push(context,MaterialPageRoute(builder: (context){
+                            return VideoList(year: value,);
+                          }));
+                        },),
+
+                    );
+                  })
+                      .toList(),
+                  onChanged: (int newValue) {
+                    setState(() {
+                      dropDownValue = newValue;
+                    });
+                  },))
         ],
       ),
       body: SizedBox.expand(

@@ -39,26 +39,38 @@ class _AboutUsState extends State<AboutUs> {
           child: Container(
             child: Column(
               children: <Widget>[
-                Container(
-                    child: Image(image:AssetImage("images/Tastebitz.png"),
+                Row(
+                  children: <Widget>[
+                    Container(
+                      child: Image(image:AssetImage("images/Tastebitz.png"),
+                      ),
+                      height: height/8,
                     ),
-                  height: height/8,
+                    Container(
+                      child: Image(image:AssetImage("images/Logo_Filled.png"),
+                      ),
+                      height: height/16,
+                    ),
+                    Container(
+                      child: Image(image:AssetImage("images/smaash_logo.png"),
+                      ),
+                      height: height/16,
+                    ),
+                  ],
                 ),
+
                 Container(
                   child: Image(image:AssetImage("images/CubeHostIndiaLogo.png"),
                   ),
-                  height: height/8,
+                  height: height/16,
                 ),
-                Container(
-                  child: Image(image:AssetImage("images/smaash_logo.png"),
-                  ),
-                  height: height/8,
-                ),
+
                 Container(
                   child: Image(image:AssetImage("images/shutterstock_logo.png"),
                   ),
-                  height: height/8,
+                  height: height/20,
                 ),
+
               ],
             ),
           ),
@@ -163,6 +175,7 @@ class _AboutUsState extends State<AboutUs> {
                             borderRadius: BorderRadius.all(Radius.circular(10),),
                             color: Colors.white
                           ),
+                          height: height/8,
                           width: width / 8,
                           child: Image(
                             image: AssetImage("images/Facebook.png"),

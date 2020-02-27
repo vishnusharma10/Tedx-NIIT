@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:tedx_niit/models/video_list.dart';
+import 'package:tedx_niit/screens/video_list.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 
@@ -22,6 +22,8 @@ final List<String> _url_ids = _urls19.map((url) {
 }).toList();
 
 class HistoryContainer extends StatefulWidget {
+  var videoId;
+  HistoryContainer({this.videoId});
   @override
   _HistoryContainerState createState() => _HistoryContainerState();
 }
@@ -47,8 +49,7 @@ class _HistoryContainerState extends State<HistoryContainer> {
   void initState() {
     super.initState();
     _controller = YoutubePlayerController(
-      initialVideoId: YoutubePlayer.convertUrlToId(
-          'https://youtu.be/ysYik6Ptfy4?list=PLsRNoUx8w3rO01rum8RfjQn5LVl5Vq7Ka'),
+      initialVideoId: widget.videoId,
       flags: YoutubePlayerFlags(
         mute: false,
         autoPlay: true,
@@ -93,20 +94,18 @@ class _HistoryContainerState extends State<HistoryContainer> {
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(
-        leading: Padding(
-          padding: const EdgeInsets.only(left: 12.0),
-          child: Image.asset(
-            'assets/ypf.png',
-            fit: BoxFit.fitWidth,
-          ),
-        ),
-        title: Text(
-          'TedX NIIT University',
-          style: TextStyle(color: Colors.white),
-        ),
+        backgroundColor: Colors.white,
+        centerTitle: true,
+        title: Container(
+            height: 50,
+            width: MediaQuery.of(context).size.width/2,
+            child: Image(
+              image: AssetImage('images/TEDxNIITUniversity3.png'),
+              fit: BoxFit.scaleDown,
+            )),
         actions: [
           IconButton(
-            icon: Icon(Icons.video_library),
+            icon: Icon(Icons.video_library,color: Colors.black,),
             onPressed: () => Navigator.push(
               context,
               CupertinoPageRoute(
@@ -202,13 +201,13 @@ class _HistoryContainerState extends State<HistoryContainer> {
                   ),
                 ),*/
                 _space,
-                Row(
+               /* Row(
                   children: [
                     _loadCueButton('LOAD'),
                     SizedBox(width: 10.0),
                     _loadCueButton('CUE'),
                   ],
-                ),
+                ),*/
                 _space,
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -243,7 +242,7 @@ class _HistoryContainerState extends State<HistoryContainer> {
                     ),
                     FullScreenButton(
                       controller: _controller,
-                      color: Colors.blueAccent,
+                      color: Colors.black,
                     ),
                   ],
                 ),
@@ -257,10 +256,11 @@ class _HistoryContainerState extends State<HistoryContainer> {
                     Expanded(
                       child: Slider(
                         inactiveColor: Colors.transparent,
+                        activeColor: Colors.red,
                         value: _volume,
                         min: 0.0,
                         max: 100.0,
-                        divisions: 10,
+                        divisions: 20,
                         label: '${(_volume).round()}',
                         onChanged: _isPlayerReady
                             ? (value) {
@@ -275,7 +275,7 @@ class _HistoryContainerState extends State<HistoryContainer> {
                   ],
                 ),
                 _space,
-                AnimatedContainer(
+                /*AnimatedContainer(
                   duration: Duration(milliseconds: 800),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20.0),
@@ -290,7 +290,7 @@ class _HistoryContainerState extends State<HistoryContainer> {
                     ),
                     textAlign: TextAlign.center,
                   ),
-                ),
+                ),*/
               ],
             ),
           ),

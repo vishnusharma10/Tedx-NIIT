@@ -38,13 +38,20 @@ class _SpeakersState extends State<Speakers> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        color: Colors.black,
         child: GridView.count(
           padding: const EdgeInsets.all(10),
           crossAxisSpacing: 10,
           mainAxisSpacing: 10,
           children: <Widget>[
+            GestureDetector(
+              child: Image(
+                image: AssetImage("images/sugata_mitra.png",),
 
+              ),
+              onTap: (){
+                showAlertDialogOnOkCallback(descriptions.descriptions['Sugata_Mitra']);
+              },
+            ),
             GestureDetector(
               child: Image(
                 image: AssetImage("images/aditya_bhandari.png",),
@@ -117,7 +124,8 @@ class _SpeakersState extends State<Speakers> {
                 showAlertDialogOnOkCallback(descriptions.descriptions['Zoe_Modgill']);
               },
             ),
-          ], crossAxisCount: 2,
+
+          ], crossAxisCount: 1,
         ),
       ),
     );
